@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>진로계획서 작성 | 2027 한국인공지능고등학교</title>
+  <meta property="og:title" content="진로계획서 작성 — 2027 한국인공지능고등학교">
+  <meta property="og:description" content="폰으로 쓰고, 선생님 첨삭 받고, 인쇄해서 자필로 옮겨 써요.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📝</text></svg>">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/student.css">
+  <link rel="stylesheet" href="css/print.css">
+</head>
+<body>
+  <div id="configWarn" class="config-warn" hidden></div>
+
+  <div id="app">
+    <!-- 로그인 -->
+    <section id="loginView" class="login-view">
+      <div class="login-card">
+        <p class="kicker">2027학년도 한국인공지능고등학교</p>
+        <h1>진로계획서 작성</h1>
+        <p class="sub">폰으로 쓰고, 선생님 첨삭 받고, 인쇄해서 원서에 자필로 옮겨 써요.</p>
+        <label class="field"><span>학번</span><input id="inId" inputmode="numeric" maxlength="5" placeholder="예: 30105" autocomplete="off"></label>
+        <label class="field"><span>이름</span><input id="inName" placeholder="홍길동" autocomplete="off"></label>
+        <label class="field"><span>비밀번호</span><input id="inPw" type="password" placeholder="4자리 이상" autocomplete="current-password"></label>
+        <p class="hint">처음이면 지금 입력한 비밀번호로 자동 등록돼요.<br>비밀번호를 잊으면 담임 선생님께 초기화를 부탁하세요.</p>
+        <button id="loginBtn" class="btn primary block">시작하기 →</button>
+        <p id="loginMsg" class="msg"></p>
+      </div>
+    </section>
+
+    <!-- 작성 -->
+    <section id="editView" hidden>
+      <header class="topbar">
+        <div class="grow who"><b id="whoName"></b><span id="whoId"></span></div>
+        <span id="statusBadge"></span>
+        <button id="refreshBtn" class="icon-btn" title="첨삭 확인">🔄</button>
+        <button id="logoutBtn" class="btn ghost sm">나가기</button>
+      </header>
+      <div id="saveState" class="savebar"></div>
+
+      <main class="wrap">
+        <div id="restoreBanner" class="banner" hidden></div>
+
+        <div class="card">
+          <div class="info-row">
+            <label class="field"><span>생년월일</span><input id="inBirth" placeholder="예: 2011. 3. 5." maxlength="20"></label>
+          </div>
+          <p class="fixed-info" id="fixedInfo"></p>
+        </div>
+
+        <div id="sections"></div>
+        <p class="foot-note">※ 원서에는 반드시 자필로 옮겨 써야 해요.<br>글자수는 띄어쓰기를 뺀 기준이에요.</p>
+        <div class="edit-pad"></div>
+      </main>
+
+      <nav class="actionbar">
+        <div class="actionbar-inner">
+          <button id="saveBtn" class="btn">💾 중간저장</button>
+          <button id="submitBtn" class="btn primary">📤 제출</button>
+          <button id="printBtn" class="btn">🖨 인쇄</button>
+        </div>
+      </nav>
+    </section>
+  </div>
+
+  <div id="printArea"></div>
+  <div id="toast"></div>
+
+  <script src="js/config.js"></script>
+  <script src="js/util.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/examples.js"></script>
+  <script src="js/sheet.js"></script>
+  <script src="js/student.js"></script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex">
+  <title>진로계획서 첨삭 | 담임용</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖍️</text></svg>">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/teacher.css">
+  <link rel="stylesheet" href="css/print.css">
+</head>
+<body>
+  <div id="configWarn" class="config-warn" hidden></div>
+
+  <div id="app">
+    <!-- 로그인 -->
+    <section id="loginView" class="t-login">
+      <div class="card t-login-card">
+        <h1>🖍️ 진로계획서 첨삭</h1>
+        <p class="hint" style="margin-bottom:16px">담임 선생님 전용 · 구글시트 '담임' 탭에 등록한 반·비밀번호로 들어와요.</p>
+        <label class="field"><span>반</span><select id="tCls"></select></label>
+        <label class="field"><span>비밀번호</span><input id="tPw" type="password"></label>
+        <button id="tLoginBtn" class="btn primary block">들어가기</button>
+        <p id="tMsg" class="msg"></p>
+      </div>
+    </section>
+
+    <!-- 목록 -->
+    <section id="listView" hidden>
+      <header class="topbar">
+        <div class="grow"><b id="tTitle"></b></div>
+        <button id="reloadBtn" class="btn ghost sm">🔄 새로고침</button>
+        <button id="tLogoutBtn" class="btn ghost sm">나가기</button>
+      </header>
+      <main class="wrap wide">
+        <div class="toolbar">
+          <div id="chips" class="chips"></div>
+          <select id="clsFilter" class="cls-filter" hidden></select>
+          <button id="batchPrintBtn" class="btn sm">🖨 보이는 학생 일괄 인쇄</button>
+        </div>
+        <div id="list" class="list"></div>
+        <p class="hint" style="text-align:center;margin-top:14px">학생이 처음 로그인하면 목록에 자동으로 나타나요.</p>
+      </main>
+    </section>
+
+    <!-- 상세·첨삭 -->
+    <section id="detailView" hidden>
+      <header class="topbar">
+        <button id="backBtn" class="btn ghost sm">← 목록</button>
+        <div class="grow d-who"><b id="dName"></b> <span id="dMeta"></span></div>
+        <button id="prevBtn" class="btn ghost sm" title="이전 학생">◀</button>
+        <button id="nextBtn" class="btn ghost sm" title="다음 학생">▶</button>
+      </header>
+      <main class="wrap wide">
+        <div class="d-status" id="dStatus"></div>
+        <div id="dSections"></div>
+        <div class="d-actions">
+          <button id="dSaveBtn" class="btn primary">💬 첨삭 저장 (학생에게 표시)</button>
+          <button id="dPrintBtn" class="btn">🖨 인쇄</button>
+          <button id="dResetBtn" class="btn danger">🔑 비밀번호 초기화</button>
+        </div>
+      </main>
+    </section>
+  </div>
+
+  <div id="printArea"></div>
+  <div id="toast"></div>
+
+  <script src="js/config.js"></script>
+  <script src="js/util.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/sheet.js"></script>
+  <script src="js/teacher.js"></script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+/* ===== 공통 스타일 (인지고 안내 페이지 색상: 네이비·블루·골드) ===== */
+:root {
+  --navy: #1b2a4e; --navy2: #24386a; --blue: #2f5bd3; --blue-soft: #eaf0ff;
+  --gold: #c9a227; --gold-soft: #fbf3dc;
+  --bg: #f4f6fb; --card: #fff; --line: #dfe4ee; --text: #1d2433; --muted: #6b7487;
+  --red: #d23b3b; --green: #1f9d63; --radius: 14px;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  font-family: 'Pretendard Variable', Pretendard, -apple-system, 'Malgun Gothic', sans-serif;
+  background: var(--bg); color: var(--text); font-size: 16px; line-height: 1.55;
+  -webkit-text-size-adjust: 100%; word-break: keep-all;
+}
+[hidden] { display: none !important; }
+input, textarea, select, button { font: inherit; }
+
+/* 입력 */
+.field { display: block; margin-bottom: 12px; }
+.field > span { display: block; font-size: 14px; font-weight: 600; color: var(--navy); margin-bottom: 5px; }
+.field input, .field select {
+  width: 100%; height: 48px; padding: 0 14px; font-size: 16px;
+  border: 1.5px solid var(--line); border-radius: 10px; background: #fff; color: var(--text);
+}
+.field input:focus, .field select:focus, textarea:focus { outline: none; border-color: var(--blue); box-shadow: 0 0 0 3px var(--blue-soft); }
+
+/* 버튼 */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  min-height: 46px; padding: 0 16px; border-radius: 10px; border: 1.5px solid var(--line);
+  background: #fff; color: var(--navy); font-weight: 700; font-size: 15px; cursor: pointer;
+  transition: transform .08s, background .15s;
+}
+.btn:active { transform: scale(.97); }
+.btn:disabled { opacity: .6; cursor: default; }
+.btn.primary { background: var(--navy); border-color: var(--navy); color: #fff; }
+.btn.gold { background: var(--gold); border-color: var(--gold); color: #fff; }
+.btn.ghost { background: transparent; border-color: rgba(255,255,255,.35); color: #fff; }
+.btn.sm { min-height: 36px; padding: 0 12px; font-size: 14px; }
+.btn.block { width: 100%; }
+.btn.danger { color: var(--red); border-color: #f1c4c4; }
+
+/* 카드·상단바 */
+.card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px; margin-bottom: 14px; box-shadow: 0 1px 3px rgba(27,42,78,.05); }
+.topbar {
+  position: sticky; top: 0; z-index: 20; display: flex; align-items: center; gap: 8px;
+  padding: 10px 14px; background: var(--navy); color: #fff;
+}
+.topbar .grow { flex: 1; min-width: 0; }
+.wrap { max-width: 760px; margin: 0 auto; padding: 14px; }
+.hint { font-size: 13px; color: var(--muted); margin: 4px 0 0; }
+.msg { min-height: 22px; font-size: 14px; color: var(--red); margin: 10px 0 0; text-align: center; }
+
+/* 상태 배지 */
+.badge { display: inline-block; padding: 3px 10px; border-radius: 999px; font-size: 12.5px; font-weight: 700; white-space: nowrap; }
+.s-draft { background: #eceff4; color: #586178; }
+.s-sub   { background: #e3ecff; color: #2348b0; }
+.s-done  { background: var(--gold-soft); color: #8a6a00; }
+.s-edit  { background: #f1e8ff; color: #6a3fb5; }
+.s-resub { background: #ddf5e8; color: #157a4b; }
+
+/* 설정 경고 */
+.config-warn { background: #fff3f3; color: var(--red); border-bottom: 2px solid var(--red); padding: 12px 14px; font-size: 14px; font-weight: 600; }
+
+/* 토스트 */
+#toast {
+  position: fixed; left: 50%; bottom: 96px; transform: translate(-50%, 20px); opacity: 0;
+  background: var(--navy); color: #fff; padding: 11px 18px; border-radius: 999px; font-size: 14.5px;
+  max-width: 90vw; text-align: center; pointer-events: none; transition: all .25s; z-index: 100;
+}
+#toast.show { opacity: 1; transform: translate(-50%, 0); }
+#toast.err { background: var(--red); }
+
+/* 로딩 */
+.spinner { width: 16px; height: 16px; border: 2.5px solid rgba(255,255,255,.4); border-top-color: currentColor; border-radius: 50%; display: inline-block; animation: spin .7s linear infinite; }
+.btn:not(.primary):not(.gold) .spinner { border-color: rgba(27,42,78,.2); border-top-color: var(--navy); }
+@keyframes spin { to { transform: rotate(360deg); } }
+.prog-wrap { width: 100%; margin-bottom: 8px; }
+.prog-track { height: 6px; background: #e3e7f0; border-radius: 3px; overflow: hidden; }
+.prog-fill { height: 100%; width: 8%; background: var(--blue); transition: width .6s; }
+.prog-label { font-size: 13px; color: var(--muted); text-align: center; margin-top: 4px; }
