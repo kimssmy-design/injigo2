@@ -37,7 +37,7 @@
   function onLoginClick() {
     var id = $('inId').value.trim(), name = $('inName').value.replace(/\s/g, ''), pw = $('inPw').value.trim();
     var m = $('loginMsg');
-    if (!/^3\d{3,4}$/.test(id)) { m.textContent = '학번을 확인해주세요. (예: 30105)'; return; }
+    if (!/^3\d{3,4}$/.test(id)) { m.textContent = '학번을 확인해주세요. (예: 3105)'; return; }
     if (!name) { m.textContent = '이름을 입력해주세요.'; return; }
     if (pw.length < 4) { m.textContent = '비밀번호는 4자리 이상이에요.'; return; }
     doLogin(id, name, pw, false);

@@ -9,7 +9,7 @@ var HEADERS = ['학번', '이름', '비번', '반', '생년월일',
   '지원동기', '진로분야', '3년계획', '포부',
   '상태', '최종저장', '제출일시',
   '첨삭_지원동기', '첨삭_진로분야', '첨삭_3년계획', '첨삭_포부', '첨삭일시'];
-var LIMITS = [300, 300, 500, 300];   // 공백 제외 글자수
+var LIMITS = [300, 300, 500, 300];   // 공백 포함 글자수
 var MAX_RAW = 3000;                  // 항목당 최대 원문 길이(악용 방지)
 
 /* ---------- 라우터 ---------- */
@@ -42,7 +42,7 @@ function out(o) {
 function now() { return Utilities.formatDate(new Date(), 'Asia/Seoul', 'yyyy-MM-dd HH:mm:ss'); }
 function str(v) { return (v === null || v === undefined) ? '' : String(v).trim(); }
 function raw(v) { return (v === null || v === undefined) ? '' : String(v); }
-function countChars(s) { return String(s || '').replace(/\s/g, '').length; }
+function countChars(s) { return String(s || '').replace(/\r\n/g, '\n').length; }
 /* =,+,-,@ 로 시작하면 수식으로 인식되지 않도록 ' 붙이기 (시트에선 안 보임) */
 function safe(s) { s = raw(s); return /^[=+\-@]/.test(s) ? "'" + s : s; }
 /* 읽을 때 위에서 붙인 ' 제거 */
@@ -105,7 +105,7 @@ function handleLogin(params) {
   var id = str(params.id);
   var name = str(params.name).replace(/\s/g, '');
   var pw = str(params.pw);
-  if (!/^3\d{3,4}$/.test(id)) return { ok: false, msg: '학번을 확인해주세요. (예: 30105)' };
+  if (!/^3\d{3,4}$/.test(id)) return { ok: false, msg: '학번을 확인해주세요. (예: 3105)' };
   if (!name) return { ok: false, msg: '이름을 입력해주세요.' };
   if (pw.length < 4) return { ok: false, msg: '비밀번호는 4자리 이상이에요.' };
 

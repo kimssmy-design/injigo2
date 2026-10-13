@@ -7,8 +7,8 @@ function esc(s) {
     .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
 }
 
-/* 공백(띄어쓰기·줄바꿈) 제외 글자수 */
-function countChars(s) { return String(s || '').replace(/\s/g, '').length; }
+/* 공백 포함 글자수 (띄어쓰기·줄바꿈도 1자로 셈) */
+function countChars(s) { return String(s || '').replace(/\r\n/g, '\n').length; }
 
 function debounce(fn, ms) {
   var t;
